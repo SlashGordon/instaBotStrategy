@@ -66,8 +66,9 @@ class SimpleInstaStrategy:
                 min_posts=self.data["min_posts"],
                 max_posts=self.data["max_posts"],
             )
-
-            self.session.set_mandatory_words(self.data["mandatory_tags"])
+            self.session.set_mandatory_language(
+                enabled=True, character_set=self.data["character_set"]
+            )
 
             for target in self.random_targets:
                 try:
@@ -86,17 +87,33 @@ class SimpleInstaStrategy:
                     amount=25,
                     InstapyFollowed=(True, "nonfollowers"),
                     style="RANDOM",
-                    unfollow_after=168 * 60 * 60,
+                    unfollow_after=48 * 60 * 60,
                     sleep_delay=600,
                 )
             except:
                 pass
 
             try:
-                self.session.like_by_tags(
-                    self.data["like_tags"],
-                    amount=self.data["like_tags_amount"],
-                )
+                if len(self.data["like_tags"]) > 0:
+                    self.session.set_mandatory_words(
+                        self.data["mandatory_tags_like"]
+                    )
+                    self.session.like_by_tags(
+                        self.data["like_tags"],
+                        amount=self.data["like_tags_amount"],
+                    )
+            except:
+                pass
+
+            try:
+                if len(self.data["like_loc"]) > 0:
+                    self.session.set_mandatory_words(
+                        self.data["mandatory_tags_loc"]
+                    )
+                    self.session.like_by_locations(
+                        self.data["like_loc"],
+                        amount=self.data["like_loc_amount"],
+                    )
             except:
                 pass
 

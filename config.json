@@ -1,6 +1,6 @@
 {
-    "username": "user",
-    "password": "pw",
+    "username": "",
+    "password": "",
     "max_followers": 2000,
     "max_following": 3500,
     "min_followers": 25,
@@ -9,11 +9,15 @@
     "max_posts":  1000,
     "headless_browser": false,
     "disable_image_load": false,
-    "black_list_tags": ["sexy"],
+    "black_list_tags": ["tag"],
     "black_list_friends": ["friend1"],
     "multi_logs": true, 
-    "like_tags": ["tag1", "tag2"],
-    "mandatory_tags": ["berlin"],
+    "like_tags": ["blondehair", "haircut"],
+    "character_set": ["LATIN"],
+    "mandatory_tags_like": ["tag1", "tag2", "tag3"],
+    "mandatory_tags_loc": ["blondehair", "makeup", "fashion", "lifestyle", "girl"],
     "like_tags_amount": 150,
-    "follow_by": ["regendelfin", "xeniaadonts", "matiamubysofia", "sylviahaghjoo", "juleslw", "carodaur"]
+    "follow_by": ["regendelfin", "xeniaadonts", "matiamubysofia", "sylviahaghjoo", "juleslw", "carodaur"],
+    "like_loc": ["213110159/hamburg-germany"], 
+    "like_loc_amount": 144
 }
