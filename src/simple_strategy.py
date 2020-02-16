@@ -43,11 +43,15 @@ class SimpleInstaStrategy:
                 sleepyhead=True,
                 stochastic_flow=True,
                 notify_me=True,
-                peak_likes=(100, 700),
-                peak_comments=(25, 200),
-                peak_follows=(48, 125),
-                peak_unfollows=(35, 400),
-                peak_server_calls=(None, 3000),
+                peak_likes_daily=100,
+                peak_likes_hourly=700,
+                peak_comments_daily=200,
+                peak_comments_hourly=25,
+                peak_follows_daily=125,
+                peak_follows_hourly=48,
+                peak_unfollows_daily=400,
+                peak_unfollows_hourly=35,
+                peak_server_calls_daily=3000,
             )
 
             self.session.set_dont_include(self.data["black_list_friends"])
@@ -89,7 +93,10 @@ class SimpleInstaStrategy:
                 pass
 
             try:
-                self.session.like_by_tags(self.data["like_tags"], amount=300)
+                self.session.like_by_tags(
+                    self.data["like_tags"],
+                    amount=self.data["like_tags_amount"],
+                )
             except:
                 pass
 
