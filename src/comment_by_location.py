@@ -1,8 +1,9 @@
-from like_strategy import LikeStrategy
 import random
+from comment_by_tag import CommentStrategy
+from like_by_location import LikeLocationStrategy
 
 
-class LikeLocationStrategy(LikeStrategy):
+class CommentByLocationStrategy(LikeLocationStrategy, CommentStrategy):
 
     @classmethod
     def is_strategy_for(cls, strategy):
@@ -12,15 +13,12 @@ class LikeLocationStrategy(LikeStrategy):
         super.__init__(config_path)
 
     def strategy(self):
-        self.set_interact()
-        config_like_location = {
+        CommentStrategy.set_interact(self)
+        config_comment_location = {
             "locations": random.sample(self.data["like_locations"], []),
             "amount": random.randrange(
-                1, self.config.get("like_loc_amount", 30)
+                1, self.config.get("comment_loc_amount", 30)
             ),
             "skip_top_posts": self.config.get("skip_top_posts", True),
         }
-        self.session.set_mandatory_words(
-            self.config.get("mandatory_tags_loc", [])
-        )
-        self.session.like_by_locations(**config_like_location)
+        self.session.comment_by_locations(**config_comment_location)

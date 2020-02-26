@@ -4,6 +4,7 @@ import json
 
 
 class BaseStrategy:
+
     def __init__(self, config_path):
         with open(config_path) as f:
             self.data = json.load(f)
@@ -15,6 +16,10 @@ class BaseStrategy:
                 multi_logs=self.data.get('multi_logs', False),
             )
         self.set_limits()
+
+    @classmethod
+    def is_strategy_for(cls, strategy):
+        raise NotImplementedError()
 
     def run(self):
         with smart_run(self.session):
@@ -45,7 +50,7 @@ class BaseStrategy:
             enabled=self.data.get('mandatory_enabled', True),
             character_set=self.data.get('character_set', ['LATIN']),
         )
-        
+
         self.session.set_sleep_reduce(self.data.get('set_sleep_reduce', 100))
         self.session.set_quota_supervisor(
             enabled=True,

@@ -1,4 +1,5 @@
 {
+    "strategies": ["CommentByLocationStrategy", "CommentStrategy", "FollowByLocationStrategy", "LikeLocationStrategy", "LikeStrategy"],
     "username": "",
     "password": "",
     "max_followers": 2000,

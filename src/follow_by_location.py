@@ -1,7 +1,12 @@
 from like_strategy import LikeStrategy
 
 
-class FollowStrategy(LikeStrategy):
+class FollowByLocationStrategy(LikeStrategy):
+
+    @classmethod
+    def is_strategy_for(cls, strategy):
+        return cls.__class__.__name__ == strategy
+
     def __init__(self, config_path):
         super.__init__(config_path)
 
