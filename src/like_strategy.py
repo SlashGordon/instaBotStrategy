@@ -9,7 +9,7 @@ class LikeStrategy(BaseStrategy):
         return cls.__class__.__name__ == strategy
 
     def __init__(self, config_path):
-        super.__init__(config_path)
+        super(LikeStrategy, self).__init__(config_path)
 
     def set_interact(self):
         config_interact = {
@@ -37,7 +37,7 @@ class LikeStrategy(BaseStrategy):
     def strategy(self):
         self.set_interact()
         config_like = {
-            'tags': random.sample(self.data['like_tags'], 3),
+            'tags': random.sample(set(self.config['like_tags']), 3),
             'amount': random.randrange(
                 1, self.config.get('like_tags_amount', 30)
             ),

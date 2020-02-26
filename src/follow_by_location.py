@@ -8,7 +8,7 @@ class FollowByLocationStrategy(LikeStrategy):
         return cls.__class__.__name__ == strategy
 
     def __init__(self, config_path):
-        super.__init__(config_path)
+        super(FollowByLocationStrategy, self).__init__(config_path)
 
     def strategy(self):
         self.set_interact()

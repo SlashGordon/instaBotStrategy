@@ -4,16 +4,15 @@ import itertools
 
 
 class CommentStrategy(LikeStrategy):
-
     @classmethod
     def is_strategy_for(cls, strategy):
         return cls.__class__.__name__ == strategy
 
     def __init__(self, config_path):
-        super.__init__(config_path)
+        super(CommentStrategy, self).__init__(config_path)
 
     def comment_generator(self):
-        emoji_list = [
+        emoji_list = {
             ":joy:",
             ":heart:",
             ":heart_eyes:",
@@ -28,7 +27,7 @@ class CommentStrategy(LikeStrategy):
             ":v:",
             "",
             ":monkey_face:",
-        ]
+        }
 
         list_comments_combinations = []
         comments_str = self.config.get("comments", "")
@@ -43,11 +42,14 @@ class CommentStrategy(LikeStrategy):
             return None
 
         return list(
-            map(lambda x: str(f"{x} {random.choice(emoji_list)}", "utf-8"))
+            map(
+                lambda x: str(f"{x} {random.choice(emoji_list)}", "utf-8"),
+                comments
+            )
         )
 
     def set_interact(self):
-        super.set_interact()
+        super(CommentStrategy, self).set_interact()
         self.session.set_do_follow(
             enabled=True, percentage=random.randrange(0, 5)
         )
@@ -60,4 +62,4 @@ class CommentStrategy(LikeStrategy):
         self.session.set_comments(self.comment_generator())
 
     def strategy(self):
-        super.strategy()
+        super(CommentStrategy, self).strategy()
