@@ -10,4 +10,4 @@
  8. create venv `python -m venv .venv`
  9. load virtual environment `.venv/Scripts/activate.ps1`
  10. install requirements `pip install -r requirements.txt`
- 11. run `python src/simple_strategy.py --path config.json`
+ 11. run `python src/start.py --path config.json`
